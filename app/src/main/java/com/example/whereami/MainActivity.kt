@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             val userCountryCode = getUserCountry(this)
             binding.button.setOnClickListener {
-                if (userCountryCode != null) {
+                if (!userCountryCode.isNullOrEmpty()) {
                     binding.textView.text = userCountryCode
                 } else {
                     binding.textView.text = "Can't get the location"
@@ -63,20 +63,20 @@ class MainActivity : AppCompatActivity() {
         try {
             val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val simCountry = tm.simCountryIso
-//            if (simCountry != null && simCountry.length == 2) { // SIM country code is available
-//                val countryCode = simCountry.lowercase(Locale.US)
-//                binding.textView.text = countryCode
-//                return countryCode
-//            }
-            if (tm.phoneType != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
+            if (simCountry != null && simCountry.length == 2) { // SIM country code is available
+                val countryCode = simCountry.lowercase(Locale.US)
+                binding.textView.text = countryCode
+                return countryCode
+            } else if (tm.phoneType != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
                 val networkCountry = tm.networkCountryIso
                 if (networkCountry != null && networkCountry.length == 2) { // network country code is available
-                    var countryCode = networkCountry.lowercase(Locale.US)
+                    val countryCode = networkCountry.lowercase(Locale.US)
+                   // binding.textView.text = countryCode
                     return countryCode
                 }
             }
         } catch (e: Exception) {
         }
-        return "Can't find location"
+        return null
     }
 }
