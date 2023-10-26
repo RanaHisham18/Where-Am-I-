@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 // Access SIM card data code goes here
             } else {
                 // Permission denied, show a message to the user
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -64,7 +64,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         } catch (e: Exception) {
-            // Handle the exception if needed
+            Toast.makeText(this, "Can't get the location", Toast.LENGTH_LONG).show()
+
         }
         return null
     }
