@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     }
 
      fun getUserCountry(context: Context): String? {
+
+         val msg = Toast.makeText(this, "Can't get the location", Toast.LENGTH_LONG).show()
         try {
             val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val simCountry = tm.simCountryIso
@@ -64,10 +66,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         } catch (e: Exception) {
-            Toast.makeText(this, "Can't get the location", Toast.LENGTH_LONG).show()
+           // Toast.makeText(this, "Can't get the location", Toast.LENGTH_LONG).show()
 
         }
-        return null
+        return msg.toString()
     }
 
 }
