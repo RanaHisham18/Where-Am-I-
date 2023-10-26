@@ -77,6 +77,6 @@ class MainActivity : AppCompatActivity() {
             }
         } catch (e: Exception) {
         }
-        return null
+        return "N/A"
     }
 }
