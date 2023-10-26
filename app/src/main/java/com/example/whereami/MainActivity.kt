@@ -29,7 +29,10 @@ class MainActivity : AppCompatActivity() {
             // Access SIM card data code goes here
             getUserCountry(applicationContext)
             val userCountryCode = getUserCountry(this)
-            binding.textView.text = userCountryCode
+            binding.button.setOnClickListener{
+                binding.textView.text = userCountryCode
+
+            }
 
         }
     }
