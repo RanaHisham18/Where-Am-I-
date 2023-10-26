@@ -67,16 +67,17 @@ class MainActivity : AppCompatActivity() {
                 val countryCode = simCountry.lowercase(Locale.US)
                 binding.textView.text = countryCode
                 return countryCode
-            } else if (tm.phoneType != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
-                val networkCountry = tm.networkCountryIso
-                if (networkCountry != null && networkCountry.length == 2) { // network country code is available
-                    val countryCode = networkCountry.lowercase(Locale.US)
-                    binding.textView.text = countryCode
-                    return countryCode
-                }
             }
+//            else if (tm.phoneType != TelephonyManager.PHONE_TYPE_CDMA) { // device is not 3G (would be unreliable)
+//                val networkCountry = tm.networkCountryIso
+//                if (networkCountry != null && networkCountry.length == 2) { // network country code is available
+//                    val countryCode = networkCountry.lowercase(Locale.US)
+//                    binding.textView.text = countryCode
+//                    return countryCode
+//                }
+//            }
         } catch (e: Exception) {
         }
-        return "N/A"
+        return "Can't find location"
     }
 }
